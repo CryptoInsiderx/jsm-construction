@@ -13,11 +13,11 @@ export default function Hero() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     el.style.opacity = "0";
-    el.style.transform = "translateY(24px)";
+    el.style.transform = "translateY(20px)";
     const frame = requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         el.style.transition =
-          "opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1), transform 0.9s cubic-bezier(0.25, 1, 0.5, 1)";
+          "opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1)";
         el.style.opacity = "1";
         el.style.transform = "translateY(0)";
       });
@@ -28,28 +28,29 @@ export default function Hero() {
   return (
     <section
       className="relative min-h-screen flex flex-col justify-center overflow-hidden"
-      style={{ backgroundColor: "oklch(14% 0.015 25)" }}
+      style={{ backgroundColor: "oklch(12% 0.012 25)" }}
       aria-label="Hero"
     >
-      {/* Background photo */}
+      {/* Background photo — finished living room with fireplace */}
       <div className="absolute inset-0" aria-hidden="true">
         <Image
-          src="https://images.unsplash.com/photo-1517581177682-a085bb7ffb15?auto=format&fit=crop&w=1920&q=75"
+          src="https://images.unsplash.com/photo-1765959617888-30837a158667?auto=format&fit=crop&w=1920&q=80"
           alt=""
           fill
-          style={{ objectFit: "cover", objectPosition: "center" }}
+          style={{ objectFit: "cover", objectPosition: "center 40%" }}
           priority
-          quality={75}
+          quality={80}
         />
-        {/* Dark overlay — layered to keep text readable */}
+        {/* Layered dark overlay — heavy left for text, opens right to reveal room */}
         <div
           className="absolute inset-0"
           style={{
             background: `linear-gradient(
-              105deg,
-              oklch(10% 0.015 25 / 0.92) 0%,
-              oklch(14% 0.015 25 / 0.80) 60%,
-              oklch(14% 0.015 25 / 0.65) 100%
+              100deg,
+              oklch(10% 0.012 25 / 0.95) 0%,
+              oklch(12% 0.012 25 / 0.85) 45%,
+              oklch(12% 0.012 25 / 0.55) 70%,
+              oklch(12% 0.012 25 / 0.35) 100%
             )`,
           }}
         />
@@ -58,11 +59,11 @@ export default function Hero() {
       {/* Crimson accent bar */}
       <div
         aria-hidden="true"
-        className="absolute left-0 top-0 bottom-0 w-1"
+        className="absolute left-0 top-0 bottom-0 w-1.5"
         style={{ backgroundColor: "oklch(34% 0.140 25)" }}
       />
 
-      <div ref={ref} className="relative max-w-6xl mx-auto px-6 py-32 md:py-40">
+      <div ref={ref} className="relative max-w-6xl mx-auto px-6 py-32 md:py-44">
         {/* Location badge */}
         <div
           className="inline-flex items-center gap-2 mb-8 px-3 py-1.5 text-xs font-semibold uppercase tracking-widest"
@@ -81,28 +82,30 @@ export default function Hero() {
 
         {/* Headline */}
         <h1
-          className="mb-6 leading-none"
+          className="mb-6"
           style={{
             fontFamily: "var(--font-display)",
             fontWeight: 900,
-            fontSize: "clamp(3rem, 8vw, 6.5rem)",
+            fontSize: "clamp(3.25rem, 9vw, 7rem)",
             color: "#f5f0ee",
-            letterSpacing: "-0.02em",
-            maxWidth: "14ch",
-            lineHeight: 0.95,
+            letterSpacing: "-0.025em",
+            maxWidth: "13ch",
+            lineHeight: 0.92,
+            textTransform: "uppercase",
           }}
         >
-          WE GIVE{" "}
+          We Give{" "}
           <span
             style={{
-              color: "oklch(55% 0.140 25)",
+              color: "oklch(58% 0.140 25)",
               fontStyle: "italic",
               fontWeight: 700,
+              textTransform: "none",
             }}
           >
-            REALITY
+            Reality
           </span>{" "}
-          TO YOUR DREAMS.
+          To Your Dreams.
         </h1>
 
         {/* Sub */}
@@ -110,9 +113,9 @@ export default function Hero() {
           className="mb-10 leading-relaxed"
           style={{
             fontFamily: "var(--font-body)",
-            fontSize: "clamp(1rem, 2.2vw, 1.15rem)",
-            color: "rgba(245,240,238,0.78)",
-            maxWidth: "50ch",
+            fontSize: "clamp(1rem, 2vw, 1.15rem)",
+            color: "rgba(245,240,238,0.82)",
+            maxWidth: "46ch",
           }}
         >
           JSM Construction Ltd. handles the full scope: basements, kitchens,
@@ -129,7 +132,6 @@ export default function Hero() {
               fontFamily: "var(--font-body)",
               backgroundColor: "oklch(34% 0.140 25)",
               color: "#f5f0ee",
-              letterSpacing: "0.01em",
             }}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLElement).style.backgroundColor =
@@ -150,17 +152,16 @@ export default function Hero() {
               fontFamily: "var(--font-body)",
               backgroundColor: "transparent",
               color: "#f5f0ee",
-              border: "1.5px solid rgba(245,240,238,0.4)",
-              letterSpacing: "0.01em",
+              border: "1.5px solid rgba(245,240,238,0.45)",
             }}
             onMouseEnter={(e) => {
               const el = e.currentTarget as HTMLElement;
               el.style.borderColor = "#f5f0ee";
-              el.style.backgroundColor = "oklch(20% 0.018 25 / 0.7)";
+              el.style.backgroundColor = "rgba(245,240,238,0.08)";
             }}
             onMouseLeave={(e) => {
               const el = e.currentTarget as HTMLElement;
-              el.style.borderColor = "rgba(245,240,238,0.4)";
+              el.style.borderColor = "rgba(245,240,238,0.45)";
               el.style.backgroundColor = "transparent";
             }}
           >
@@ -169,10 +170,10 @@ export default function Hero() {
           </a>
         </div>
 
-        {/* Service proof strip */}
+        {/* Service tag strip */}
         <div
           className="mt-16 pt-8 flex flex-wrap gap-x-8 gap-y-2"
-          style={{ borderTop: "1px solid oklch(30% 0.020 25)" }}
+          style={{ borderTop: "1px solid oklch(28% 0.018 25)" }}
         >
           {[
             "Basements",
@@ -187,10 +188,10 @@ export default function Hero() {
               key={label}
               style={{
                 fontFamily: "var(--font-body)",
-                fontSize: "0.8rem",
-                color: "rgba(245,240,238,0.55)",
+                fontSize: "0.78rem",
+                color: "rgba(245,240,238,0.5)",
                 textTransform: "uppercase",
-                letterSpacing: "0.08em",
+                letterSpacing: "0.09em",
               }}
             >
               {label}
@@ -202,20 +203,21 @@ export default function Hero() {
       {/* Scroll cue */}
       <a
         href="#services"
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-40 hover:opacity-70 transition-opacity duration-300"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-35 hover:opacity-65 transition-opacity duration-300"
         aria-label="Scroll to services"
         style={{ color: "#f5f0ee" }}
       >
         <span
-          className="text-xs uppercase tracking-widest"
           style={{
             fontFamily: "var(--font-body)",
-            fontSize: "0.65rem",
+            fontSize: "0.6rem",
+            textTransform: "uppercase",
+            letterSpacing: "0.1em",
           }}
         >
           View Services
         </span>
-        <ChevronDown size={18} aria-hidden="true" />
+        <ChevronDown size={17} aria-hidden="true" />
       </a>
     </section>
   );
